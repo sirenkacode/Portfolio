@@ -1,0 +1,16 @@
+.planet {
+    border: none;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    font-family: 'Silkscreen', monospace;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .planet:hover {
+    transform: scale(1.1);
+  }
+  

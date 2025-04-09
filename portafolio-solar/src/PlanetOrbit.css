@@ -1,0 +1,45 @@
+.orbit {
+    position: absolute;
+    top: -25%;
+    left: -25%;
+    width: 150%;
+    height: 150%;
+    pointer-events: none;
+    animation: planetRotate 180s linear infinite;
+  }
+  
+  .planet-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: planetRotate inherit;
+    animation-direction: reverse;
+    transform-origin: center;
+  }
+  
+  .planet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Silkscreen', monospace;
+    font-size: 0.6rem;
+    color: #333;
+    text-align: center;
+    border-radius: 50%;
+    padding: 2px;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
+  @keyframes planetRotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
