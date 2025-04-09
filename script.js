@@ -40,14 +40,14 @@ style.innerHTML = `
   .orbit-circle1 { width: 600px; height: 600px; border-color: #ffadad; }
   .orbit-circle2 { width: 720px; height: 720px; border-color: #a0c4ff; }
   .orbit-circle3 { width: 960px; height: 960px; border-color: #bdb2ff; }
-  .orbit-circle4 { width: 1095px; height: 1095px; border-color: #caffbf; }
+  .orbit-circle4 { width: 1080px; height: 1080px; border-color: #caffbf; }
   .orbit-circle5 { width: 1200px; height: 1200px; border-color: #ffd6a5; }
 
   /* translateX corregido restando la mitad del ancho del planeta */
   .planet1 { transform: translate(265px, -50%); } /* 300 - 35 */
   .planet2 { transform: translate(330px, -50%); } /* 360 - 30 */
   .planet3 { transform: translate(440px, -50%); } /* 480 - 40 */
-  .planet4 { transform: translate(565px, -50%); } /* 597.5 - 32.5 */
+  .planet4 { transform: translate(505px, -50%); } /* 537.5 - 32.5 */
   .planet5 { transform: translate(562.5px, -50%); } /* 600 - 37.5 */
 
   /* Correcciones específicas para skills y contacto */
