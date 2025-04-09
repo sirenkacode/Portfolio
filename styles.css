@@ -36,6 +36,7 @@ body {
   transition: transform 0.4s ease;
   opacity: 0;
   cursor: pointer;
+  filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.3));
 }
 
 .astronaut.clicked {
@@ -147,23 +148,27 @@ body {
   border-top: 10px solid rgba(240, 240, 240, 0.8);
 }
 
-/* Orbit circles */
 .orbit-circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  border: 1px dashed rgba(0, 0, 0, 0.1);
-  transform: translate(-50%, -50%);
-  z-index: -2;
-  pointer-events: none;
-}
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border: 1px dashed rgba(0, 0, 0, 0.1);
+    transform: translate(-50%, -50%);
+    z-index: -2;
+    pointer-events: none;
+  
+    /* ✨ Devuelve animación de giro + glow */
+    animation-name: orbitSpin, orbitGlow;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite;
+  }
 
-.orbit-circle1 { width: 30vmin; height: 30vmin; border-color: #ffadad; }
-.orbit-circle2 { width: 36vmin; height: 36vmin; border-color: #a0c4ff; }
-.orbit-circle3 { width: 48vmin; height: 48vmin; border-color: #bdb2ff; }
-.orbit-circle4 { width: 54vmin; height: 54vmin; border-color: #caffbf; }
-.orbit-circle5 { width: 60vmin; height: 60vmin; border-color: #ffd6a5; }
+.orbit-circle1 { width: 30vmin; height: 30vmin; border-color: #ffadad; animation-duration: 200s, 4s; }
+.orbit-circle2 { width: 36vmin; height: 36vmin; border-color: #a0c4ff; animation-duration: 220s, 5s; }
+.orbit-circle3 { width: 48vmin; height: 48vmin; border-color: #bdb2ff; animation-duration: 270s, 6s; }
+.orbit-circle4 { width: 54vmin; height: 54vmin; border-color: #caffbf; animation-duration: 210s, 7s; }
+.orbit-circle5 { width: 60vmin; height: 60vmin; border-color: #ffd6a5; animation-duration: 250s, 8s; }
 
 /* Animación órbitas planetas */
 @keyframes planetRotate {
@@ -179,11 +184,11 @@ body {
 .orbit5 { animation: planetRotate 380s linear infinite; }
 
 /* NUEVO: retrasos negativos para posiciones iniciales variadas */
-.orbit1 { animation-delay: -10s; } /* Licencias */
+.orbit1 { animation-delay: -20s; } /* Licencias */
 .orbit2 { animation-delay: -70s; } /* Proyectos */
 .orbit3 { animation-delay: -130s; } /* Skills */
 .orbit4 { animation-delay: -190s; } /* Contacto */
-.orbit5 { animation-delay: -250s; } /* Experiencia */
+.orbit5 { animation-delay: -150s; } /* Experiencia */
 
 .orbit {
   position: absolute;
@@ -194,6 +199,17 @@ body {
   z-index: 2;
   pointer-events: none;
 }
+
+@keyframes orbitSpin {
+    0%   { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(-360deg); }
+  }
+  
+  @keyframes orbitGlow {
+    0%, 100% { box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
+    50%      { box-shadow: 0 0 6px rgba(255, 255, 255, 0.2); }
+  }
+  
 
 .planet-wrapper {
   position: absolute;
@@ -211,20 +227,26 @@ body {
 .planet5 { transform: translate(27vmin, -50%); }
 
 .planet {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Silkscreen', monospace;
-  color: #333;
-  text-decoration: none;
-  font-size: 0.6rem;
-  border-radius: 50%;
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
-  padding: 2px;
-  text-align: center;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Silkscreen', monospace;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.6rem;
+    border-radius: 50%;
+    opacity: 0;
+    padding: 2px;
+    text-align: center;
+    animation: fadeIn 1s ease-out forwards, planetRotate linear infinite reverse;
+    animation-duration: 1s, inherit;
+    animation-fill-mode: forwards;
+  
+    /* Sombra externa suave para dar volumen */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  }
 
+/* Colores planos sin gradientes */
 .planet-wrapper.planet1 .planet { width: 7vmin; height: 7vmin; background: #ffadad; animation-delay: 0.3s; }
 .planet-wrapper.planet2 .planet { width: 6vmin; height: 6vmin; background: #a0c4ff; animation-delay: 0.6s; }
 .planet-wrapper.planet3 .planet { width: 8vmin; height: 8vmin; background: #bdb2ff; animation-delay: 0.9s; }
