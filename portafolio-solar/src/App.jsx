@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Astronaut from './components/Astronaut';
 import Planet from './components/Planet';
 import OrbitCircle from './components/OrbitCircle';
+import OverlayExplosion from './components/OverlayExplosion';
+
+import Licencias from './components/Licencias';
+import Proyectos from './components/Proyectos';
+import Skills from './components/Skills';
+import Experiencia from './components/Experiencia';
+import Contacto from './components/Contacto';
+
 import './App.css';
 
 const planets = [
@@ -16,15 +24,19 @@ function App() {
   const [text, setText] = useState('');
   const [showBubble, setShowBubble] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
-  const fullText = '¡Hola Mundo! Este es mi sistema solar personal :) Feliz exploración, cosmonauta.';
+  const [activePlanet, setActivePlanet] = useState(null);
+  const [clickPosition, setClickPosition] = useState(null);
+  const [showOverlay, setShowOverlay] = useState(false);
+
+  const fullText = '¡Hola Mundo! Espero encuestres lo que buscas en mi sistema solar personal :) Feliz exploración, cosmonauta.';
 
   useEffect(() => {
     if (!showBubble) return;
-  
+
     let index = 0;
     let currentText = '';
     setText(''); // Reinicia el texto cada vez
-  
+
     const interval = setInterval(() => {
       if (index < fullText.length) {
         currentText += fullText.charAt(index);
@@ -34,17 +46,39 @@ function App() {
         clearInterval(interval);
       }
     }, 60);
-  
+
     return () => clearInterval(interval);
   }, [showBubble]);
-  
-  
-  
 
   const handleAstronautClick = () => {
     setShowBubble(prev => !prev);
     setIsShaking(true);
     setTimeout(() => setIsShaking(false), 600);
+  };
+
+  const handlePlanetClick = (name, coords, planetColor) => {
+    setActivePlanet(name);
+    setClickPosition(coords);
+    setShowOverlay(true);
+  };
+
+  const handleClose = () => {
+    setShowOverlay(false);
+    setTimeout(() => {
+      setActivePlanet(null);
+      setClickPosition(null);
+    }, 300);
+  };
+
+  const renderPlanetContent = () => {
+    switch (activePlanet) {
+      case 'Licencias': return <Licencias />;
+      case 'Proyectos': return <Proyectos />;
+      case 'Skills': return <Skills />;
+      case 'Experiencia': return <Experiencia />;
+      case 'Contacto': return <Contacto />;
+      default: return null;
+    }
   };
 
   return (
@@ -65,13 +99,27 @@ function App() {
         </div>
 
         {planets.map((planet, i) => (
-          <Planet key={i} {...planet} />
+          <Planet
+            key={i}
+            {...planet}
+            onClick={(e) => handlePlanetClick(planet.name, { x: e.clientX, y: e.clientY }, planet.color)}
+          />
         ))}
 
         {[1, 2, 3, 4, 5].map((n) => (
           <OrbitCircle key={n} index={n} />
         ))}
       </div>
+
+      {showOverlay && clickPosition && (
+        <OverlayExplosion
+          origin={clickPosition}
+          planetColor={planets.find(p => p.name === activePlanet).color}
+          onClose={handleClose}
+        >
+          {renderPlanetContent()}
+        </OverlayExplosion>
+      )}
 
       <footer>• Última actualización • <br />08/04/2025</footer>
     </>
