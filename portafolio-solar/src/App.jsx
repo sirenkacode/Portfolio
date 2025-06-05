@@ -121,7 +121,7 @@ function App() {
         </OverlayExplosion>
       )}
 
-      <footer>• Última actualización • <br />08/04/2025</footer>
+      <footer>• Última actualización • <br />11/04/2025</footer>
     </>
   );
 }

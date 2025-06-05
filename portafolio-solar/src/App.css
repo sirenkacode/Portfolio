@@ -4,7 +4,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #686081, #f2f0f8);
+  background: linear-gradient(to bottom, #514c61, #f2f0f8);
   font-family: sans-serif;
   overflow: hidden;
   display: flex;
@@ -14,6 +14,111 @@ body {
   min-height: 100vh;
 }
 
+canvas {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+h2, h3 {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeIn 0.5s forwards;
+}
+
+h2 {
+  font-family: 'Nabla', cursive;
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+h3 {
+  font-family: 'Silkscreen', monospace;
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #444;
+}
+
+/* Animación por scroll */
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Contenedor de los links para que solo muestren 3 a la vez */
+.links-container {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* Los links empiezan con opacidad baja y van aumentando */
+.parallax-effect {
+  opacity: 0;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transform: translateY(30px);
+}
+
+.parallax-effect.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cada link se hace opaco gradualmente */
+.links-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.links-container li {
+  margin: 5px 0;
+}
+
+.links-container a {
+  display: block;
+  color: #333;
+  font-family: 'Silkscreen', monospace;
+  font-size: 1rem;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.links-container a:hover {
+  opacity: 1;
+  color: #333;
+}
+
+/* Ajuste visual para el scroll-indicator */
+.scroll-indicator {
+  font-size: 2rem;
+  color: white;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollFade 2s infinite;
+}
+
+@keyframes scrollFade {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+/* Ajuste de los planetas y astronauta sin afectar el fadeIn global */
+.planet,
+.astronaut,
+.orbit-circle {
+  animation: none; /* Elimina el fadeIn global para los planetas y astronauta */
+}
+
 .solar-system {
   position: relative;
   width: 90vmin;
@@ -21,6 +126,8 @@ body {
   max-width: 500px;
   max-height: 500px;
   z-index: 1;
+  opacity: 0;
+  animation: fadeIn 2s forwards 0.2s; /* Animación de entrada */
 }
 
 .astronaut {
@@ -45,11 +152,9 @@ body {
              verticalShake 0.6s ease;
 }
 
-
 .astronaut:hover {
   pointer-events: auto; /* Solo habilita el clic cuando el cursor está sobre la imagen visible */
 }
-
 
 @keyframes verticalShake {
   0%   { transform: translate(-50%, -50%) translateY(0); }
@@ -78,36 +183,36 @@ body {
 }
 
 .identity-block {
-    position: absolute;
-    top: 50%;
-    left: calc(50% + 8vmin);
-    transform: translateY(-50%);
-    text-align: left;
-    z-index: 1;
-    animation: floatIdentity 4s ease-in-out infinite;
-  }
-  
-  .identity-block h1 {
-    font-family: 'Nabla', cursive;
-    font-size: 1.4rem;
-    margin: 0;
-    color: #222;
-  }
-  
-  .identity-block p {
-    font-family: 'Silkscreen', monospace;
-    font-size: 0.7rem;
-    margin: 4px 0 0;
-    color: #444;
-  }
-  
-  @keyframes floatIdentity {
-    0% { transform: translateY(-50%) translateY(0); }
-    25% { transform: translateY(-50%) translateY(-9px); }
-    50% { transform: translateY(-50%) translateY(2px); }
-    75% { transform: translateY(-50%) translateY(-5px); }
-    100% { transform: translateY(-50%) translateY(0); }
-  }
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 8vmin);
+  transform: translateY(-50%);
+  text-align: left;
+  z-index: 1;
+  animation: floatIdentity 4s ease-in-out infinite 1.5s; /* Animación de entrada */
+}
+
+.identity-block h1 {
+  font-family: 'Nabla', cursive;
+  font-size: 1.4rem;
+  margin: 0;
+  color: #222;
+}
+
+.identity-block p {
+  font-family: 'Silkscreen', monospace;
+  font-size: 0.7rem;
+  margin: 4px 0 0;
+  color: #444;
+}
+
+@keyframes floatIdentity {
+  0% { transform: translateY(-50%) translateY(0); }
+  25% { transform: translateY(-50%) translateY(-9px); }
+  50% { transform: translateY(-50%) translateY(2px); }
+  75% { transform: translateY(-50%) translateY(-5px); }
+  100% { transform: translateY(-50%) translateY(0); }
+}
 
 @keyframes floatBubble {
   0% { transform: translate(-50%, -100%) translateY(0); }
@@ -154,21 +259,20 @@ body {
   border-top: 10px solid rgba(240, 240, 240, 0.8);
 }
 
+/* Animación de las órbitas */
 .orbit-circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 50%;
-    border: 1px dashed rgba(0, 0, 0, 0.1);
-    transform: translate(-50%, -50%);
-    z-index: -2;
-    pointer-events: none;
-  
-    /* ✨ Devuelve animación de giro + glow */
-    animation-name: orbitSpin, orbitGlow;
-    animation-timing-function: linear, ease-in-out;
-    animation-iteration-count: infinite;
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -50%);
+  z-index: -2;
+  pointer-events: none;
+  animation-name: orbitSpin, orbitGlow;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite;
+}
 
 .orbit-circle1 { width: 30vmin; height: 30vmin; border-color: #ffadad; animation-duration: 200s, 4s; }
 .orbit-circle2 { width: 36vmin; height: 36vmin; border-color: #a0c4ff; animation-duration: 220s, 5s; }
@@ -182,7 +286,6 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* Animación órbitas planetas (Ya existente en tu código) */
 .orbit1 { animation: planetRotate 180s linear infinite; }
 .orbit2 { animation: planetRotate 220s linear infinite; }
 .orbit3 { animation: planetRotate 270s linear infinite; }
@@ -207,15 +310,14 @@ body {
 }
 
 @keyframes orbitSpin {
-    0%   { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(-360deg); }
-  }
-  
-  @keyframes orbitGlow {
-    0%, 100% { box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
-    50%      { box-shadow: 0 0 6px rgba(255, 255, 255, 0.2); }
-  }
-  
+  0%   { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@keyframes orbitGlow {
+  0%, 100% { box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
+  50%      { box-shadow: 0 0 6px rgba(255, 255, 255, 0.2); }
+}
 
 .planet-wrapper {
   pointer-events: none;
@@ -235,37 +337,36 @@ body {
 .planet5 { transform: translate(27vmin, -50%); }
 
 .planet {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Silkscreen', monospace;
-    color: #333;
-    text-decoration: none;
-    font-size: 0.6rem;
-    border-radius: 50%;
-    opacity: 0;
-    padding: 2px;
-    text-align: center;
-    animation: fadeIn 1s ease-out forwards, planetRotate linear infinite reverse;
-    animation-duration: 1s, inherit;
-    animation-fill-mode: forwards;
-    cursor: pointer;
-    pointer-events: auto;
-    z-index: 10;
-    position: relative;
-    /* Sombra externa suave para dar volumen */
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Silkscreen', monospace;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.6rem;
+  border-radius: 50%;
+  opacity: 0;
+  padding: 2px;
+  text-align: center;
+  animation: fadeIn 1s ease-out forwards, planetRotate linear infinite reverse;
+  animation-duration: 1s, inherit;
+  animation-fill-mode: forwards;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 10;
+  position: relative;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-  .planet:hover {
-    transform: scale(1.1); /* Para hacer que los planetas aumenten de tamaño cuando el mouse pasa por encima */
-    z-index: 5; /* Asegura que el planeta esté sobre otros elementos */
-  }
+.planet:hover {
+  transform: scale(1.1);
+  z-index: 5;
+}
 
-  .planet span {
-    pointer-events: none; /* Esto evita que el texto bloquee el clic */
-    display: inline-block;
-  }
+.planet span {
+  pointer-events: none;
+  display: inline-block;
+}
 
 /* Colores planos sin gradientes */
 .planet-wrapper.planet1 .planet { width: 7vmin; height: 7vmin; background: #ffadad; animation-delay: 0.3s; }
@@ -274,13 +375,16 @@ body {
 .planet-wrapper.planet4 .planet { width: 6.5vmin; height: 6.5vmin; background: #caffbf; animation-delay: 1.2s; }
 .planet-wrapper.planet5 .planet { width: 7.5vmin; height: 7.5vmin; background: #ffd6a5; animation-delay: 1.5s; }
 
+
 footer {
   font-family: 'Silkscreen', monospace;
   font-size: 0.8rem;
   color: #999;
   text-align: center;
   padding: 10px;
+  animation: fadeIn 5s forwards 0.2s; /* Animación de entrada */
 }
+
 /* Animación de la explosión */
 .overlay-explosion {
   position: fixed;
@@ -329,3 +433,4 @@ footer {
   cursor: pointer;
   z-index: 10001;
 }
+
