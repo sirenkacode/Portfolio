@@ -1,3 +1,4 @@
+// src/components/Astronaut.jsx
 import React from 'react';
 import astronauta from '../assets/astronauta.png';
 
@@ -23,7 +24,6 @@ function Astronaut({ onClick, isShaking }) {
           width: '100%',
           height: '100%',
           objectFit: 'contain',
-          clipPath: 'circle(50%)', // Corta el área fuera del astronauta (círculo)
         }}
       />
     </div>

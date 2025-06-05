@@ -1,3 +1,4 @@
+// src/components/OrbitCircle.jsx
 import React from 'react';
 
 const colors = {
