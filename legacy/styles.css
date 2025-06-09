@@ -124,18 +124,17 @@ body {
   font-family: 'Silkscreen', monospace;
   border-radius: 20px;
   text-align: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
   z-index: 2;
   backdrop-filter: blur(4px);
+  animation: floatBubble 5s ease-in-out infinite;
 }
 
-.speech-bubble.visible {
+
+/* .speech-bubble.visible {
   opacity: 1;
   pointer-events: auto;
   animation: floatBubble 5s ease-in-out infinite;
-}
+} */
 
 .speech-bubble .bubble-tail {
   position: absolute;

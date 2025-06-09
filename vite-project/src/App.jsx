@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Astronaut from './components/Astronaut';
 import Planet from './components/Planet';
 import OrbitCircle from './components/OrbitCircle';
-
+import PlanetScreen from './components/PlanetScreen';
+import PlanetNavBar from './components/PlanetNavBar';
 import './App.css';
 
 const planets = [
@@ -17,8 +18,10 @@ function App() {
   const [text, setText] = useState('');
   const [showBubble, setShowBubble] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
+  const [activePlanet, setActivePlanet] = useState(null);
+  const [isExiting, setIsExiting] = useState(false);
 
-  const fullText = '¡Hola Mundo! Bienvenidos a mi sistema solar personal; Y feliz exploración, cosmonautas.';
+  const fullText = '¡Hola Mundo! Espero encuestres lo que buscas en mi sistema solar personal :) Feliz exploración, cosmonauta.';
 
   useEffect(() => {
     if (!showBubble) return;
@@ -40,46 +43,73 @@ function App() {
   const handleAstronautClick = (e) => {
     const target = e.target;
     if (target.tagName === 'IMG' && target.currentSrc.includes('astronaut')) {
-      setShowBubble(prev => !prev);
+      if (!showBubble) {
+        setText('');
+        setShowBubble(true);
+      } else {
+        setShowBubble(false);
+        setText('');
+      }
       setIsShaking(true);
       setTimeout(() => setIsShaking(false), 600);
     }
   };
 
+  const handlePlanetClick = (name) => {
+    setIsExiting(true);
+    setTimeout(() => {
+      setActivePlanet(name);
+      setIsExiting(false);
+    }, 800);
+  };
+
+  const handleBackToSystem = () => {
+    setActivePlanet(null);
+  };
+
   return (
     <>
-      <div className="solar-system">
-        <Astronaut onClick={handleAstronautClick} isShaking={isShaking} />
+      {!activePlanet && (
+        <div className={`solar-system ${isExiting ? 'exit' : ''}`}>
+          <Astronaut onClick={handleAstronautClick} isShaking={isShaking} />
 
-        {showBubble && (
-          <div className="speech-bubble visible">
-            <span>{text}</span>
-            <div className="bubble-tail"></div>
+          {showBubble && text && (
+            <div className="speech-bubble visible">
+              <span>{text}</span>
+              <div className="bubble-tail"></div>
+            </div>
+          )}
+
+          <div className="identity-block">
+            <h1>Micaela Alvariza Allende</h1>
+            <p>Front-end developer, con pensamientos intrusivos de designer.</p>
           </div>
-        )}
 
-        <div className="identity-block">
-          <h1>Micaela Alvariza Allende</h1>
-          <p>Front-end developer, con pensamientos intrusivos de designer.</p>
+          {planets.map((planet, i) => (
+            <Planet
+              key={i}
+              {...planet}
+              onClick={() => handlePlanetClick(planet.name)}
+            />
+          ))}
+
+          {[1, 2, 3, 4, 5].map((n) => (
+            <OrbitCircle key={n} index={n} />
+          ))}
         </div>
+      )}
 
-        {planets.map((planet, i) => (
-          <Planet
-            key={i}
-            {...planet}
-            onClick={() => {}}
+      {activePlanet && (
+        <>
+          <PlanetNavBar planets={planets} onBack={handleBackToSystem} />
+          <PlanetScreen
+            planetName={activePlanet}
+            color={planets.find(p => p.name === activePlanet)?.color}
           />
-        ))}
+        </>
+      )}
 
-        {[1, 2, 3, 4, 5].map((n) => (
-          <OrbitCircle key={n} index={n} />
-        ))}
-      </div>
-
-      <footer>
-        • Última actualización • <br />
-        05/06/2025
-      </footer>
+      <footer>• Última actualización • <br />11/04/2025</footer>
     </>
   );
 }
