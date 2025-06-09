@@ -20,6 +20,7 @@ function App() {
   const [isShaking, setIsShaking] = useState(false);
   const [activePlanet, setActivePlanet] = useState(null);
   const [isExiting, setIsExiting] = useState(false);
+  const [bgColor, setBgColor] = useState('#f2f0f8');
 
   const fullText = '¡Hola Mundo! Espero encuestres lo que buscas en mi sistema solar personal :) Feliz exploración, cosmonauta.';
 
@@ -43,59 +44,68 @@ function App() {
   const handleAstronautClick = (e) => {
     const target = e.target;
     if (target.tagName === 'IMG' && target.currentSrc.includes('astronaut')) {
-      if (!showBubble) {
-        setText('');
-        setShowBubble(true);
-      } else {
-        setShowBubble(false);
-        setText('');
-      }
+      setShowBubble(!showBubble);
+      setText('');
       setIsShaking(true);
       setTimeout(() => setIsShaking(false), 600);
     }
   };
 
   const handlePlanetClick = (name) => {
+    const clickedPlanet = planets.find((p) => p.name === name);
+    if (!clickedPlanet) return;
     setIsExiting(true);
+    setBgColor(clickedPlanet.color);
     setTimeout(() => {
       setActivePlanet(name);
       setIsExiting(false);
-    }, 800);
+    }, 1000);
   };
 
   const handleBackToSystem = () => {
     setActivePlanet(null);
+    setBgColor('#f2f0f8');
   };
 
   return (
-    <>
+  <div
+  className={`app-background ${isExiting ? 'fade-out fade-bg' : ''}`}
+  style={{ '--planet-color': bgColor }}
+>
+
       {!activePlanet && (
-        <div className={`solar-system ${isExiting ? 'exit' : ''}`}>
-          <Astronaut onClick={handleAstronautClick} isShaking={isShaking} />
+        <div className="solar-system-container">
+          <div className="solar-system">
+            <Astronaut onClick={handleAstronautClick} isShaking={isShaking} />
 
-          {showBubble && text && (
-            <div className="speech-bubble visible">
-              <span>{text}</span>
-              <div className="bubble-tail"></div>
+            {showBubble && text && (
+              <div className="speech-bubble visible">
+                <span>{text}</span>
+                <div className="bubble-tail"></div>
+              </div>
+            )}
+
+            <div className="identity-block">
+              <h1>Micaela Alvariza Allende</h1>
+              <p>Front-end developer, con pensamientos intrusivos de designer.</p>
             </div>
-          )}
 
-          <div className="identity-block">
-            <h1>Micaela Alvariza Allende</h1>
-            <p>Front-end developer, con pensamientos intrusivos de designer.</p>
+            {planets.map((planet, i) => (
+              <Planet
+                key={i}
+                {...planet}
+                onClick={() => handlePlanetClick(planet.name)}
+              />
+            ))}
+
+            {[1, 2, 3, 4, 5].map((n) => (
+              <OrbitCircle key={n} index={n} />
+            ))}
           </div>
 
-          {planets.map((planet, i) => (
-            <Planet
-              key={i}
-              {...planet}
-              onClick={() => handlePlanetClick(planet.name)}
-            />
-          ))}
-
-          {[1, 2, 3, 4, 5].map((n) => (
-            <OrbitCircle key={n} index={n} />
-          ))}
+          <footer className="footer">
+            • Última actualización • <br />09/06/2025
+          </footer>
         </div>
       )}
 
@@ -108,9 +118,7 @@ function App() {
           />
         </>
       )}
-
-      <footer>• Última actualización • <br />11/04/2025</footer>
-    </>
+    </div>
   );
 }
 

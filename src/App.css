@@ -5,6 +5,9 @@
 body {
   margin: 0;
   padding: 0;
+   width: 100%;
+  height: 100%;
+  overflow-x: hidden;
   background: linear-gradient(to bottom, #686081, #f2f0f8);
   font-family: sans-serif;
   overflow: hidden;
@@ -12,9 +15,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   transition: background 1s ease;
 }
+
 
 /* Sistema Solar y astronauta */
 
@@ -229,4 +232,43 @@ footer {
   color: #999;
   text-align: center;
   padding: 10px;
+}
+
+
+.app-background {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #686081, #f2f0f8);
+  z-index: 0;
+}
+
+/* Capa que simula el nuevo color apareciendo lentamente */
+.app-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--planet-color, transparent);
+  opacity: 0;
+  transition: opacity 1.6s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.app-background.fade-bg::before {
+  opacity: 1;
+}
+
+/* Suavidad en la salida de todos los elementos */
+.fade-out .solar-system,
+.fade-out .identity-block,
+.fade-out .speech-bubble,
+.fade-out footer {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
 }
