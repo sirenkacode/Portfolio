@@ -104,7 +104,7 @@ function App() {
           </div>
 
           <footer className="footer">
-            • Última actualización • <br />09/06/2025
+            • Última actualización • <br />10/06/2025
           </footer>
         </div>
       )}
