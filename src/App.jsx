@@ -98,7 +98,7 @@ function App() {
                 <Astronaut onClick={handleAstronautClick} isShaking={isShaking} />
                 <div className="identity-block">
                   <h1>Micaela Alvariza Allende</h1>
-                  <p>Frontend developer, con pensamientos intrusivos de designer.</p>
+                  <p>Desarrolladora Frontend, con pensamientos intrusivos de diseño.</p>
                 </div>
               </>
             )}

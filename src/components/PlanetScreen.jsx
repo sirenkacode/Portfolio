@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'; 
 import PlanetNavBar from './PlanetNavBar';
 import '../App.css';
 import './PlanetScreen.css';
+import Licencias from './Licencias';
+// import otros componentes cuando los vayas a usar...
 
 function PlanetScreen({ planetName, color, onBack }) {
   const [fadeIn, setFadeIn] = useState(false);
@@ -10,6 +12,19 @@ function PlanetScreen({ planetName, color, onBack }) {
     const timer = setTimeout(() => setFadeIn(true), 50);
     return () => clearTimeout(timer);
   }, []);
+
+  const renderContent = () => {
+    switch (planetName.toLowerCase()) {
+      case "licencias":
+        return <Licencias />;
+      // podés agregar más casos luego:
+      // case "proyectos":
+      //   return <Proyectos />;
+       default:
+        return null;
+
+    }
+  };
 
   return (
     <div
@@ -26,37 +41,7 @@ function PlanetScreen({ planetName, color, onBack }) {
       }}
     >
       <PlanetNavBar onBack={onBack} />
-
-      <div style={{
-        maxWidth: '800px',
-        textAlign: 'center',
-      }}>
-        <h2 style={{
-          fontSize: '2rem',
-          marginBottom: '1rem',
-          fontFamily: 'Nabla, cursive',
-          color: '#222',
-        }}>{planetName}</h2>
-
-        <p style={{
-          fontSize: '0.9rem',
-          color: '#444',
-          marginBottom: '2rem'
-        }}>
-          Bienvenido a la sección <strong>{planetName}</strong>. Este bloque está diseñado para mantener la estética retro-espacial del sistema solar original.
-        </p>
-
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '1rem',
-          justifyContent: 'center',
-        }}>
-          <div className="planet-box">Contenido 1</div>
-          <div className="planet-box">Contenido 2</div>
-          <div className="planet-box">Contenido 3</div>
-        </div>
-      </div>
+      {renderContent()}
     </div>
   );
 }
