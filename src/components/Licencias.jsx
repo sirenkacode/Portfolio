@@ -6,139 +6,162 @@ const cursos = [
     horas: 38, 
     titulo: "Desarrollo Web", 
     plataforma: "Coderhouse", 
-    link: "https://pub.coderhouse.com/certificates/17f9a851-f1d0-420e-bfa1-8f723978a5a4?v=1" },
+    link: "https://pub.coderhouse.com/certificates/17f9a851-f1d0-420e-bfa1-8f723978a5a4?v=1", 
+    skills: ["HTML", "CSS", "SASS", "Boostrap", "SEO",]},
   
     { categoria: "Programación", 
     horas: 36, 
     titulo: "Curso Gratis de Programación Básica", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/3208-programacion-basica/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/3208-programacion-basica/diploma/detalle/", 
+    skills: ["HTML", "CSS", "JS", "Node.js", "Express.js"]},
 
      { categoria: "Programación", 
     horas: 36, 
     titulo: "Fundamentos de JavaScript", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/10266-javascript/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/10266-javascript/diploma/detalle/", 
+    skills: ["JavaScript"]},
 
     { categoria: "Programación", 
     horas: 22, 
     titulo: "Fundamentos de Sass", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/6867-sass/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/6867-sass/diploma/detalle/",
+    skills: ["SASS", "Diseño Web"] },
 
      { categoria: "Programación", 
     horas: 34, 
     titulo: "C#", 
     plataforma: "Coderhouse", 
-    link: "https://pub.coderhouse.com/legacy-certificates/6358bd4294c28200046ba3ef?lang=es" },
+    link: "https://pub.coderhouse.com/legacy-certificates/6358bd4294c28200046ba3ef?lang=es",
+    skills: ["C#"] },
 
      { categoria: "Programación", 
     horas: 25, 
     titulo: "Game Maker Studio 2 - GML", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2790-game-maker-personajes/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2790-game-maker-personajes/diploma/detalle/",
+    skills: ["Game Maker Studio 2", "GML"] },
   
     { categoria: "Diseño", 
     horas: 15, 
     titulo: "Curso Básico de Photoshop", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/1230-course/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/1230-course/diploma/detalle/", 
+    skills: ["Photoshop", "Diseño"]},
   
     { categoria: "Diseño", 
     horas: 18, 
     titulo: "Curso de Adobe XD", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2420-adobe-xd/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2420-adobe-xd/diploma/detalle/",
+    skills: ["Adobe XD", "Diseño", "UI/UX"]},
   
     { categoria: "Diseño", 
     horas: 20, 
     titulo: "Curso de Diseño de Interfaces", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/1493-diseno-interfaz/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/1493-diseno-interfaz/diploma/detalle/",
+    skills: ["Diseño", "UI/UX"]},
 
     { categoria: "Diseño", 
     horas: 22, 
     titulo: "Curso de Adobe Illustrator", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/1130-illustrator/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/1130-illustrator/diploma/detalle/",
+    skills: ["Illustrator", "Diseño"]},
 
     { categoria: "Diseño", 
     horas: 19, 
     titulo: "Curso de Ilustración en Productos Digitales", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/1455-ilustracion-digital/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/1455-ilustracion-digital/diploma/detalle/",
+    skills: ["Illustrator", "Diseño", "Diseño de Producto" ]},
 
     { categoria: "Diseño", 
     horas: 17, 
     titulo: "Metodologías de Diseño de Productos Digitales", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2286-metodologias-diseno-producto/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2286-metodologias-diseno-producto/diploma/detalle/",
+    skills: ["Diseño", "Diseño de Producto"]},
 
     { categoria: "Idiomas", 
     horas: 20, 
     titulo: "Inglés Avanzado C1: Comunicación Persuasiva y Efectiva", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2574-habilidades-comunicacion/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2574-habilidades-comunicacion/diploma/detalle/",
+    skills: ["Inglés"] },
 
      { categoria: "Idiomas", 
     horas: 22, 
     titulo: "Inglés Avanzado C1: Presentaciones y Expresión Oral", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2730-expresiones-idiomaticas/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2730-expresiones-idiomaticas/diploma/detalle/",
+    skills: ["Inglés"] },
 
      { categoria: "Idiomas", 
     horas: 21, 
     titulo: "Inglés Avanzado C1: Argumentos y Discusiones", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2976-ingles-avanzado-argumentacion/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2976-ingles-avanzado-argumentacion/diploma/detalle/",
+    skills: ["Inglés"] },
 
      { categoria: "Idiomas", 
     horas: 24, 
     titulo: "Inglés Avanzado C1: Recursos Conversacionales y Lingüísticos", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2599-recursos-linguisticos/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2599-recursos-linguisticos/diploma/detalle/",
+    skills: ["Inglés"] },
 
     { categoria: "Idiomas", 
     horas: 22, 
     titulo: "Inglés Intermedio Alto B2: Discurso Indirecto y Condicionales", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2512-course/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2512-course/diploma/detalle/",
+    skills: ["Inglés"]},
 
     { categoria: "Idiomas", 
     horas: 21, 
     titulo: "Inglés Intermedio Alto B2: Comentarios y Opiniones", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2415-intenciones-comparaciones/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2415-intenciones-comparaciones/diploma/detalle/",
+    skills: ["Inglés"]},
 
     { categoria: "Idiomas", 
     horas: 22, 
     titulo: "Inglés Intermedio Alto B2: Suposiciones e Instrucciones", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2423-course/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2423-course/diploma/detalle/",
+    skills: ["Inglés"] },
 
     { categoria: "Idiomas", 
     horas: 19, 
     titulo: "Inglés Intermedio Alto: Pasado Perfecto Pasivo y Frases Adverbiales", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2521-pasado-perfecto-pasivo-adverbiales/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2521-pasado-perfecto-pasivo-adverbiales/diploma/detalle/",
+    skills: ["Inglés"] },
 
     { categoria: "Idiomas", 
     horas: 22, 
     titulo: "Inglés Intermedio Alto B2: Discurso Indirecto y Condicionales", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/2512-course/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/2512-course/diploma/detalle/",
+    skills: ["Inglés"] },
 
     { categoria: "Idiomas", 
     horas: 1.5, 
     titulo: "Cursiva Rusa", 
     plataforma: "Udemy", 
-    link: "https://www.udemy.com/certificate/UC-51ba47e8-3db2-4e2b-bb93-9ea79154a3ea/" },
+    link: "https://www.udemy.com/certificate/UC-51ba47e8-3db2-4e2b-bb93-9ea79154a3ea/",
+    skills: ["Ruso"] },
   
     { categoria: "Otras habilidades", 
     horas: 15, 
     titulo: "Curso de Psicología del Consumidor", 
     plataforma: "Platzi", 
-    link: "https://platzi.com/p/micaelaalvariza/curso/1817-psicologia-consumidor/diploma/detalle/" },
+    link: "https://platzi.com/p/micaelaalvariza/curso/1817-psicologia-consumidor/diploma/detalle/",
+    skills: ["Psicología del consumidor"] },
 ];
 
 const Licencias = () => {
@@ -179,7 +202,7 @@ const Licencias = () => {
 
   return (
     <div className="licencias-wrapper">
-      <h1 className="licencias-titulo">Licencias</h1>
+      <h1 className="licencias-titulo bouncing">Licencias</h1>
       <p>Actualmente cursando la carrera FullStack en Coderhouse.<br></br>(Cursos por completar: JavaScript, React JS Flex, 
         Programación Backend I, Programación Backend II y Programación Backend (III))</p>
 
@@ -194,11 +217,17 @@ const Licencias = () => {
                   <p>{curso.plataforma}</p>
                   <span>{curso.horas} h</span>
                 </div>
-                <div className="card-hover">
-                  <a href={curso.link} target="_blank" rel="noopener noreferrer">
-                    Ver certificación
-                  </a>
+               <div className="card-hover-tags">
+                <div className="tags-contenedor">
+                {curso.skills.map((skill, k) => (
+                <span key={k} className="skill-tag">{skill}</span>
+                    ))}
                 </div>
+                 <a href={curso.link} target="_blank" rel="noopener noreferrer" className="cert-btn">
+                Ver certificación
+                </a>
+                </div>
+
               </div>
             </div>
           ))}
