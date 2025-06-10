@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import PlanetNavBar from './PlanetNavBar';
 import '../App.css';
+import './PlanetScreen.css';
 
-function PlanetScreen({ planetName, color }) {
+function PlanetScreen({ planetName, color, onBack }) {
   const [fadeIn, setFadeIn] = useState(false);
 
   useEffect(() => {
@@ -13,17 +15,18 @@ function PlanetScreen({ planetName, color }) {
     <div
       className={`planet-screen ${fadeIn ? 'fade-in' : ''}`}
       style={{
-        backgroundColor: color,
+        background: `linear-gradient(to bottom, #686081, ${color})`,
         minHeight: '100vh',
         fontFamily: 'Silkscreen, monospace',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
         alignItems: 'center',
-        padding: '3rem 2rem',
-        transition: 'background-color 0.8s ease, opacity 0.8s ease',
+        paddingTop: '4rem',
+        transition: 'opacity 0.8s ease',
       }}
     >
+      <PlanetNavBar onBack={onBack} />
+
       <div style={{
         maxWidth: '800px',
         textAlign: 'center',

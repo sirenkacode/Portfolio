@@ -1,22 +1,20 @@
-// PlanetNavBar.jsx
-import React from "react";
-import "../App.css"; // Asegúrate de que los estilos se apliquen
+import React from 'react';
+import './PlanetNavBar.css';
 
-function PlanetNavBar({ planets, onSelect, onBack }) {
+function PlanetNavBar({ onBack, onPlanetSelect }) {
+  const sections = ['Licencias', 'Proyectos', 'Stack', 'Experiencia', 'Contacto'];
+
   return (
-    <div className="planet-navbar">
-      <span className="planet-link" onClick={onBack}>🌕 Inicio
-      </span>
-      {planets.map((planet, i) => (
-        <span
-          key={i}
-          className="planet-link"
-          onClick={() => onSelect(planet.name)}
-        >
-          {planet.name}
-        </span>
-      ))}
-    </div>
+    <nav className="top-navbar">
+      <ul>
+        <li onClick={onBack}>Inicio</li>
+        {sections.map((sec, i) => (
+          <li key={i} onClick={() => onPlanetSelect(sec)}>
+            {sec}
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 

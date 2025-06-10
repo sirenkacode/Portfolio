@@ -1,8 +1,9 @@
 import React from 'react';
+import '../App.css';
 
 function Planet({ name, color, size, delay, orbit, onClick }) {
   const handleClick = (e) => {
-    e.stopPropagation(); // evita que el clic burbujee
+    e.stopPropagation();
     onClick(name);
   };
 
@@ -17,11 +18,10 @@ function Planet({ name, color, size, delay, orbit, onClick }) {
             width: size,
             height: size,
             animationDelay: delay,
-            pointerEvents: 'auto', // CLAVE
-            cursor: 'pointer',     // para que se vea como clickeable
+            borderRadius: '50%',
           }}
         >
-          <span className="planet-label">{name}</span>
+          <span className="planet-label">{name.toUpperCase()}</span>
         </div>
       </div>
     </div>

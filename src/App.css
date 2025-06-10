@@ -1,11 +1,10 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
 
 body {
   margin: 0;
   padding: 0;
-   width: 100%;
+  width: 100%;
   height: 100%;
   overflow-x: hidden;
   background: linear-gradient(to bottom, #686081, #f2f0f8);
@@ -18,9 +17,7 @@ body {
   transition: background 1s ease;
 }
 
-
 /* Sistema Solar y astronauta */
-
 .solar-system {
   position: relative;
   width: 90vmin;
@@ -44,6 +41,8 @@ body {
   opacity: 0;
   cursor: pointer;
   filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.3));
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .astronaut.clicked {
@@ -53,15 +52,16 @@ body {
 }
 
 /* Identidad flotante */
-
 .identity-block {
   position: absolute;
   top: 50%;
   left: calc(50% + 8vmin);
   transform: translateY(-50%);
   text-align: left;
-  z-index: 1;
+  z-index: 10;
   animation: floatIdentity 4s ease-in-out infinite;
+  opacity: 1;
+  max-width: 170px;
 }
 
 .identity-block h1 {
@@ -79,7 +79,6 @@ body {
 }
 
 /* Burbujita */
-
 .speech-bubble {
   position: absolute;
   top: 6%;
@@ -124,19 +123,17 @@ body {
   animation-iteration-count: infinite;
 }
 
-.orbit-circle1 { width: 30vmin; height: 30vmin; border-color: #ffadad; animation-duration: 200s, 4s; }
-.orbit-circle2 { width: 36vmin; height: 36vmin; border-color: #a0c4ff; animation-duration: 220s, 5s; }
+.orbit-circle1 { width: 32vmin; height: 32vmin; border-color: #ffadad; animation-duration: 200s, 4s; }
+.orbit-circle2 { width: 40vmin; height: 40vmin; border-color: #a0c4ff; animation-duration: 220s, 5s; }
 .orbit-circle3 { width: 48vmin; height: 48vmin; border-color: #bdb2ff; animation-duration: 270s, 6s; }
 .orbit-circle4 { width: 54vmin; height: 54vmin; border-color: #caffbf; animation-duration: 210s, 7s; }
 .orbit-circle5 { width: 60vmin; height: 60vmin; border-color: #ffd6a5; animation-duration: 250s, 8s; }
 
-/* Planetas */
-
-.orbit1 { animation: planetRotate 180s linear infinite; animation-delay: -20s; }
-.orbit2 { animation: planetRotate 220s linear infinite; animation-delay: -70s; }
-.orbit3 { animation: planetRotate 270s linear infinite; animation-delay: -130s; }
-.orbit4 { animation: planetRotate 320s linear infinite; animation-delay: -190s; }
-.orbit5 { animation: planetRotate 380s linear infinite; animation-delay: -150s; }
+.orbit1 { animation: planetRotate 180s linear infinite; animation-delay: 0s; }
+.orbit2 { animation: planetRotate 220s linear infinite; animation-delay: 0s; }
+.orbit3 { animation: planetRotate 270s linear infinite; animation-delay: 0s; }
+.orbit4 { animation: planetRotate 320s linear infinite; animation-delay: 0s; }
+.orbit5 { animation: planetRotate 380s linear infinite; animation-delay: 0s; }
 
 .orbit {
   position: absolute;
@@ -148,23 +145,16 @@ body {
   pointer-events: none;
 }
 
-.planet-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: center;
-  animation: planetRotate inherit;
-  animation-direction: reverse;
-}
-
-.planet1 { transform: translate(13vmin, -50%); }
-.planet2 { transform: translate(16vmin, -50%); }
-.planet3 { transform: translate(21vmin, -50%); }
-.planet4 { transform: translate(24vmin, -50%); }
-.planet5 { transform: translate(27vmin, -50%); }
+/* Planetas */
+.planet1 { transform: rotate(200deg) translate(22vmin) rotate(-200deg); }
+.planet2 { transform: rotate(40deg) translate(15vmin) rotate(-40deg); }
+.planet3 { transform: rotate(120deg) translate(24vmin) rotate(-120deg); }
+.planet4 { transform: rotate(300deg) translate(27vmin) rotate(-300deg); }
+.planet5 { transform: rotate(341deg) translate(27vmin) rotate(-341deg); }
 
 .planet {
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   font-family: 'Silkscreen', monospace;
@@ -183,6 +173,28 @@ body {
   cursor: pointer;
 }
 
+.planet-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: center;
+  font-family: 'Silkscreen', monospace;
+  font-size: 0.6rem;
+  color: #444;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: none !important;
+}
+
+.planet-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  animation: planetRotate linear infinite reverse;
+}
+
 .planet-wrapper.planet1 .planet { width: 7vmin; height: 7vmin; background: #ffadad; animation-delay: 0.3s; }
 .planet-wrapper.planet2 .planet { width: 6vmin; height: 6vmin; background: #a0c4ff; animation-delay: 0.6s; }
 .planet-wrapper.planet3 .planet { width: 8vmin; height: 8vmin; background: #bdb2ff; animation-delay: 0.9s; }
@@ -190,31 +202,23 @@ body {
 .planet-wrapper.planet5 .planet { width: 7.5vmin; height: 7.5vmin; background: #ffd6a5; animation-delay: 1.5s; }
 
 /* Animaciones clave */
-
 @keyframes planetRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes orbitSpin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
 @keyframes orbitGlow { 0%, 100% { box-shadow: 0 0 0px rgba(255, 255, 255, 0); } 50% { box-shadow: 0 0 6px rgba(255, 255, 255, 0.2); } }
 @keyframes floatBubble { 0%, 100% { transform: translate(-50%, -100%) translateY(0); } 25% { transform: translate(-50%, -100%) translateY(-3px); } 50% { transform: translate(-50%, -100%) translateY(2px); } 75% { transform: translate(-50%, -100%) translateY(-2px); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes astronautAppear { to { opacity: 1; } }
-@keyframes floatIdentity { 0% { transform: translateY(-50%) translateY(0); } 25% { transform: translateY(-50%) translateY(-9px); } 50% { transform: translateY(-50%) translateY(2px); } 75% { transform: translateY(-50%) translateY(-5px); } 100% { transform: translateY(-50%) translateY(0); } }
+@keyframes floatIdentity {
+  0%   { transform: translateY(-50%); }
+  25%  { transform: translateY(calc(-50% - 8px)); }
+  50%  { transform: translateY(calc(-50% + 4px)); }
+  75%  { transform: translateY(calc(-50% - 5px)); }
+  100% { transform: translateY(-50%); }
+}
 @keyframes float { 0% { transform: translate(-50%, -50%) translateY(0); } 25% { transform: translate(-50%, -50%) translateY(-6px); } 50% { transform: translate(-50%, -50%) translateY(4px); } 75% { transform: translate(-50%, -50%) translateY(-3px); } 100% { transform: translate(-50%, -50%) translateY(0); } }
 @keyframes verticalShake { 0% { transform: translate(-50%, -50%) translateY(0); } 20% { transform: translate(-50%, -50%) translateY(-6px); } 40% { transform: translate(-50%, -50%) translateY(4px); } 60% { transform: translate(-50%, -50%) translateY(-3px); } 80% { transform: translate(-50%, -50%) translateY(2px); } 100% { transform: translate(-50%, -50%) translateY(0); } }
 
 /* Secciones planetarias */
-
-.planet-screen {
-  width: 100%;
-  min-height: 100vh;
-  padding: 3rem 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  animation: fadeIn 1s forwards;
-  font-family: 'Silkscreen', monospace;
-}
-
 .planet-box {
   background: rgba(255, 255, 255, 0.75);
   padding: 1rem 1.5rem;
@@ -226,15 +230,41 @@ body {
   font-family: 'Silkscreen', monospace;
 }
 
-footer {
+.footer {
   font-family: 'Silkscreen', monospace;
   font-size: 0.8rem;
   color: #999;
-  text-align: center;
   padding: 10px;
+  text-align: center;
+  margin-top: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
 }
 
+.footer.show {
+  opacity: 1;
+  visibility: visible;
+}
 
+.footer.exit {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.orbits-fade-in {
+  opacity: 0;
+  animation: fadeInOrbits 1.2s ease-in-out forwards;
+}
+
+@keyframes fadeInOrbits {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fondo base del sistema solar */
 .app-background {
   position: fixed;
   inset: 0;
@@ -247,12 +277,11 @@ footer {
   z-index: 0;
 }
 
-/* Capa que simula el nuevo color apareciendo lentamente */
 .app-background::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--planet-color, transparent);
+  background: linear-gradient(to bottom, #686081, var(--planet-color, #686081));
   opacity: 0;
   transition: opacity 1.6s ease;
   pointer-events: none;
@@ -263,12 +292,39 @@ footer {
   opacity: 1;
 }
 
-/* Suavidad en la salida de todos los elementos */
 .fade-out .solar-system,
 .fade-out .identity-block,
 .fade-out .speech-bubble,
 .fade-out footer {
   opacity: 0;
-  transition: opacity 0.8s ease;
   pointer-events: none;
+}
+
+/* Fondo seguro para transición planetaria */
+.planet-transition-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(to bottom, #f2f0f8, var(--planet-color, #f2f0f8));
+  z-index: 1;
+}
+
+.planet-transition-wrapper.fade-in {
+  animation: fadeInBg 0.6s ease forwards;
+}
+.planet-transition-wrapper.fade-out {
+  animation: fadeOutBg 0.6s ease forwards;
+}
+
+@keyframes fadeInBg {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeOutBg {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
